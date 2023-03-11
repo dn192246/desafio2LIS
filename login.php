@@ -30,7 +30,7 @@
                                 <input type="password" class="form-control" id="password" />
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="rememberMe" />
+                                <input class="form-check-input" type="checkbox" value="" id="rememberMe"/>
                                 <label class="form-check-label" for="rememberMe">
                                     Recordar Mis Credenciales
                                 </label>
