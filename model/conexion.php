@@ -1,7 +1,7 @@
 <?php
 $password = "";
 $username="root";
-$database="LIS941";
+$database="lis941";
 $server="localhost";
 
 try{
