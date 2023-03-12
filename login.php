@@ -12,7 +12,7 @@
 
     <?php
     session_start();
-    if(isset($_SESSION['idUsuario'])){
+    if (isset($_SESSION['idUsuario'])) {
         header('location:balance.php');
     }
     ?>
@@ -38,12 +38,14 @@
                                 <label for="password" class="form-label">Contraseña:</label>
                                 <input type="password" class="form-control" name="password" id="password" />
                             </div>
+                            <!--
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" value="" id="rememberMe" />
                                 <label class="form-check-label" for="rememberMe">
                                     Recordar Mis Credenciales
                                 </label>
                             </div>
+                            -->
                             <button type="submit" class="btn btn-primary">
                                 Iniciar Sesión
                             </button>
