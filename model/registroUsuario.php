@@ -9,6 +9,9 @@ if(isset($_POST['email']) and isset($_POST['password']) and isset($_POST['passwo
     if($password1 !== $password2){
         header('location: ../registro.php?error=1');
     }
+    else if(preg_match("/\w+@\w+.\w{2,4}/",$email)==0){
+        header('location: ../registro.php?error=4');
+    }
 
     else{ 
         $comprobarUsuario = $bd->prepare("SELECT * from usuarios where emailUsuario = ?;");

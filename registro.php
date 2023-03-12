@@ -58,6 +58,11 @@
             echo
             "<script>Swal.fire('Error','Se produjo un error, por favor intente más tarde','error');</script>";
         }
+        else if ($_GET['error'] == 4) {
+            echo
+            "<script>Swal.fire('Advertencia','El correo electrónico no es válido','error');</script>";
+        }
+        
     }
     ?>
 
