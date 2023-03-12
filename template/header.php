@@ -21,3 +21,11 @@ if (!isset($_SESSION['idUsuario'])) {
             <a href="model/logout.php" class="btn btn-danger col-md-1 text-center">Salir</a>
         </div>
     </div>
+
+    <?php
+    /*
+    <br>
+    <p class="text-center" style="font-weight:bold">Usuario Actual:</b><p class="text-dark text-center"><?php echo $_SESSION['usuario']; ?></p>
+    <hr>
+    */
+    ?>
