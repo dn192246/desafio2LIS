@@ -21,14 +21,14 @@
                     </div>
                     <div class="card-body">
                         <img src="privImg/logo1.png" alt="Gestión Financiera - LIS941" class="mx-auto d-block">
-                        <form>
+                        <form action="model/loginUsuario.php" method="POST">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo Electrónico:</label>
-                                <input type="email" class="form-control" id="email" />
+                                <input type="email" class="form-control" name="email" id="email" />
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña:</label>
-                                <input type="password" class="form-control" id="password" />
+                                <input type="password" class="form-control" name="password" id="password" />
                             </div>
                             <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" value="" id="rememberMe" />
@@ -39,6 +39,7 @@
                             <button type="submit" class="btn btn-primary">
                                 Iniciar Sesión
                             </button>
+                            <a class="btn btn-success" href="registro.php">Regístrate</a>
                         </form>
                     </div>
                 </div>
@@ -53,6 +54,17 @@
         if ($_GET['registro'] == 1) {
             echo
             "<script>Swal.fire('Registro Completado','¡Te has registrado satisfactoriamente!','success');</script>";
+        }
+    }
+
+    if (isset($_GET['login'])) {
+        if ($_GET['login'] == 0) {
+            echo
+            "<script>Swal.fire('Aviso','Debes Iniciar Sesión Previamente','warning');</script>";
+        }
+        if ($_GET['login'] == 1) {
+            echo
+            "<script>Swal.fire('Error','Credenciales Erróneas','error');</script>";
         }
     }
     ?>

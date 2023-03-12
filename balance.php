@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Balance de Entradas y Salidas</title>
-	
-	<?php 
-		require('template/header.php');
+
+	<?php
+	require('template/header.php');
 	?>
 
 	<div class="container mt-4">
@@ -38,5 +39,6 @@
 	require('template/footer.php')
 	?>
 
-</body>
+	</body>
+
 </html>

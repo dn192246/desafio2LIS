@@ -37,6 +37,7 @@
                             <button type="button" onclick="validarClaves()" class="btn btn-primary">
                                 Registrarme
                             </button>
+                            <a class="btn btn-success" href="login.php">¿Ya posees una cuenta?</a>
                         </form>
                     </div>
                 </div>
