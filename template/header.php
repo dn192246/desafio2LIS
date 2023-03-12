@@ -6,7 +6,6 @@ session_start();
 if (!isset($_SESSION['idUsuario'])) {
     header('location:login.php?login=0');
 }
-
 ?>
 
 </head>
