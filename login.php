@@ -38,15 +38,7 @@
                                 <label for="password" class="form-label">Contraseña:</label>
                                 <input type="password" class="form-control" name="password" id="password" />
                             </div>
-                            <!--
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="rememberMe" />
-                                <label class="form-check-label" for="rememberMe">
-                                    Recordar Mis Credenciales
-                                </label>
-                            </div>
-                            -->
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" name="btnLogin" class="btn btn-primary">
                                 Iniciar Sesión
                             </button>
                             <a class="btn btn-success" href="registro.php">Regístrate</a>
@@ -75,6 +67,10 @@
         if ($_GET['login'] == 1) {
             echo
             "<script>Swal.fire('Error','Credenciales Erróneas','error');</script>";
+        }
+        if ($_GET['login'] == 2) {
+            echo
+            "<script>Swal.fire('Error','Hubo un error. Intente nuevamente','error');</script>";
         }
     }
     ?>

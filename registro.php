@@ -34,7 +34,7 @@
                                 <label for="password-verify" class="form-label">Verificar Contraseña:</label>
                                 <input type="password" class="form-control" name="password-verify" id="password-verify" required />
                             </div>
-                            <button type="button" onclick="validarClaves()" class="btn btn-primary">
+                            <button type="button" name="btnRegistro" onclick="validarClaves()" class="btn btn-primary">
                                 Registrarme
                             </button>
                             <a class="btn btn-success" href="login.php">¿Ya posees una cuenta?</a>
