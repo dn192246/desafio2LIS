@@ -2,7 +2,7 @@
 
 require('conexion.php');
 
-class Entradas extends Conexion {
+class Entradas extends Conexion{
     private $idTipoEntrada;
     private $monto;
     private $fecha;
