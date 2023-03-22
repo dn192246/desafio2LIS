@@ -62,8 +62,6 @@
 	if(isset($_SESSION['status']) && $_SESSION['status']!=''){
 		echo "<script>Swal.fire('¡Enhorabuena!','Registro ingresado correctamente.','success');</script>";
 		unset($_SESSION['status']);
-	}else{
-		echo "<script>Swal.fire('¡Ups!','No se completo el registro.','warning');</script>";
 	}
 	?>
 	</body>
