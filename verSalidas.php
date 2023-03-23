@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Mostrar Salidas</title>
+	<title>Ver Salidas</title>
 
 	<?php
 	require('template/header.php');
@@ -14,19 +14,42 @@
 			<thead>
 				<tr>
 					<th>Fecha</th>
-					<th>Hora</th>
 					<th colspan="2">Concepto</th>
 					<th>Cantidad</th>
+					<th>Factura</th>
 				</tr>
 			</thead>
-			<tbody>
-				<!-- Aquí iría el código PHP para mostrar las salidas -->
-				<tr>
-					<td>2023-03-08</td>
-					<td>08:00:00</td>
-					<td colspan="2">Compra de medicamentos</td>
-					<td>$22.31</td>
-				</tr>
+			<tbody>			
+				<?php
+				include_once('model/Salidas.class.php');
+				$datos = new Salidas();
+				$Salidas = $datos->getSalidas();
+
+				foreach ($Salidas as $Salida) {
+					$fecha = $Salida['fechaSalida'];
+					$tipo = $Salida['nombreTipoSalida'];
+					$monto = $Salida['montoSalida'];
+					$factura = $Salida['facturaSalida'];
+
+					if($factura!=null){
+						echo "<tr>
+						<td>$fecha</td>
+						<td colspan=\"2\">$tipo</td>
+						<td>\$$monto</td>
+						<td><a class=\"btn btn-primary\"href=\"./$factura\">Ver Factura</a></td>
+						</tr>";
+					}
+					else{
+						echo "<tr>
+						<td>$fecha</td>
+						<td colspan=\"2\">$tipo</td>
+						<td>\$$monto</td>
+						<td>Sin Factura</td>
+						</tr>";
+					}
+					
+				}
+				?>
 			</tbody>
 		</table>
 	</div>
@@ -36,4 +59,5 @@
 	?>
 
 	</body>
+
 </html>
