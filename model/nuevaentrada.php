@@ -23,10 +23,7 @@
             $_SESSION['status'] = "ok";
         }else{
             unset($_SESSION['status']);
-        }
-
-
-    
+        }    
     header('location:../registroentrada.php');
 }
 

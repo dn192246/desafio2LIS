@@ -1,8 +1,8 @@
 <?php
 
-require('conexion.class.php');
+require('conexion.php');
 
-class Entradas extends ConexionDB{
+class Entradas extends Conexion{
     private $idTipoEntrada;
     private $monto;
     private $fecha;
@@ -15,7 +15,7 @@ class Entradas extends ConexionDB{
         $this->monto = $monto;
     }
     public function setFecha($fecha){
-        $fecha = date("Y-m-d", strtotime($fecha));
+        $fecha = date("Y-m-d", strtotime($fecha)); //Configuramos la fecha en formato Y-m-d, para el ingreso en la BD
         $this->fecha = $fecha;
     }
     public function setFactura($factura){
@@ -37,21 +37,22 @@ class Entradas extends ConexionDB{
     public function insertEntrada($idusuario){
         try{
             $sql = "INSERT INTO entradas(idUsuario, idTipoEntrada, montoEntrada, fechaEntrada, facturaEntrada) VALUES (?,?,?,?,?)";
-            $stmt = $this->connect()->prepare($sql);
+            $stmt = $this->conectar()->prepare($sql);
             $stmt->execute([$idusuario, $this->idTipoEntrada, $this->monto, $this->fecha, $this->factura]);
+            $this->desconectar($stmt);
             return $stmt;
         }
         catch(Exception $e){
             return $e->getMessage();
-            //echo "<script>Swal.fire('Oh!','".$e->getMessage()."','success');</script>";
         }
     }
 
     public function updateEntrada($idEntrada){
         try{
         $sql = "UPDATE entradas SET idUsuario=?, idTipoEntrada=?, montoEntrada=?, fechaEntrada=?, facturaEntrada=? WHERE idEntrada=?";
-        $stmt = $this->connect()->prepare($sql);
+        $stmt = $this->conectar()->prepare($sql);
         $stmt->execute([$this->idUsuario, $this->idTipoEntrada, $this->monto, $this->fecha, $this->factura, $idEntrada]);
+        $this->desconectar($stmt);
     }
     catch(Exception $e){
         return $e->getMessage();
@@ -60,9 +61,10 @@ class Entradas extends ConexionDB{
 
     public function deleteEntrada($idEntrada){
         try{
-        $sql = "INSERT INTO entradas(idUsuario, idTipoEntrada, montoEntrada, fechaEntrada, facturaEntrada VALUES (?,?,?,?,?)";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$this->idEntrada,$this->idEntrada, $this->idEntrada]);
+        $sql = "DELETE FROM entradas WHERE idEntrada = ?";
+        $stmt = $this->conectar()->prepare($sql);
+        $stmt->execute([$this->idEntrada]);
+        $this->desconectar($stmt);
     }
     catch(Exception $e){
         return $e->getMessage();
@@ -72,18 +74,34 @@ class Entradas extends ConexionDB{
     public function getTipoEntradas(){
         try{
         $sql = "SELECT * FROM tipoentradas";
-        $stmt = $this->connect()->prepare($sql);
+        $stmt = $this->conectar()->prepare($sql);
         $stmt->execute();
 
         while($result = $stmt->fetchAll()){
             return $result;
         }
-    }
-    catch(Exception $e){
+        $this->desconectar($stmt);
+        }catch(Exception $e){
         return $e->getMessage();
+        }
     }
-    }
+    
+    public function getEntradas() {
+        try {
+            //Realizamos las consultas de entradas y salidas
+            $entradas = $this->conectar()->query("SELECT `idEntrada`,`idUsuario`,entradas.`idTipoEntrada`,`montoEntrada`,`fechaEntrada`,`facturaEntrada`,tipoentradas.nombreTipoEntrada FROM `entradas` LEFT JOIN `tipoentradas` ON tipoentradas.idTipoEntrada=entradas.idTipoEntrada;")->fetchAll(PDO::FETCH_ASSOC);
+            //Desconectamos la base de datos
+            $this->desconectar($entradas);
 
+            return $entradas;
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+    
 }
+
+    
 
 ?>
