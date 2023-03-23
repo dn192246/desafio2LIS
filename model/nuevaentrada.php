@@ -14,8 +14,10 @@
     $nombreImg = $_FILES['archivo']['name'];
     $archivo = $_FILES['archivo']['tmp_name'];
     $dir = "../files/";
+    $dir2="./files/";
     $dir = $dir.$nombreImg;
-    $re->setFactura($dir);
+    $dir2=$dir2.$nombreImg;
+    $re->setFactura($dir2);
     
     //Ingresamos el registro a la BD
         if($re->insertEntrada($_SESSION['idUsuario'])){

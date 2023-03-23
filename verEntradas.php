@@ -14,19 +14,42 @@
 			<thead>
 				<tr>
 					<th>Fecha</th>
-					<th>Hora</th>
 					<th colspan="2">Concepto</th>
 					<th>Cantidad</th>
+					<th>Factura</th>
 				</tr>
 			</thead>
-			<tbody>
-				<!-- Aquí se mostrarían las entradas -->
-				<tr>
-					<td>2023-03-08</td>
-					<td>08:00:00</td>
-					<td colspan="2">Remesa Familiar</td>
-					<td>$250</td>
-				</tr>
+			<tbody>			
+				<?php
+				include_once('model/entradas.class.php');
+				$datos = new Entradas();
+				$entradas = $datos->getEntradas();
+
+				foreach ($entradas as $entrada) {
+					$fecha = $entrada['fechaEntrada'];
+					$tipo = $entrada['nombreTipoEntrada'];
+					$monto = $entrada['montoEntrada'];
+					$factura = $entrada['facturaEntrada'];
+
+					if($factura!=null){
+						echo "<tr>
+						<td>$fecha</td>
+						<td colspan=\"2\">$tipo</td>
+						<td>\$$monto</td>
+						<td><a class=\"btn btn-primary\"href=\"./$factura\">Ver Factura</a></td>
+						</tr>";
+					}
+					else{
+						echo "<tr>
+						<td>$fecha</td>
+						<td colspan=\"2\">$tipo</td>
+						<td>\$$monto</td>
+						<td>Sin Factura</td>
+						</tr>";
+					}
+					
+				}
+				?>
 			</tbody>
 		</table>
 	</div>
@@ -34,7 +57,7 @@
 	<?php
 	require('template/footer.php')
 	?>
-	
-</body>
+
+	</body>
 
 </html>

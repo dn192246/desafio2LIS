@@ -90,7 +90,7 @@ class Entradas extends Conexion{
         try {
             $user = $_SESSION['idUsuario'];
             //Realizamos las consultas de entradas y salidas
-            $entradas = $this->conectar()->query("SELECT `idEntrada`,`idUsuario`,entradas.`idTipoEntrada`,`montoEntrada`,`fechaEntrada`,`facturaEntrada`,tipoentradas.nombreTipoEntrada FROM `entradas` LEFT JOIN `tipoentradas` ON tipoentradas.idTipoEntrada=entradas.idTipoEntrada;")->fetchAll(PDO::FETCH_ASSOC);
+            $entradas = $this->conectar()->query("SELECT `idEntrada`,`idUsuario`,entradas.`idTipoEntrada`,`montoEntrada`,`fechaEntrada`,`facturaEntrada`,tipoentradas.nombreTipoEntrada FROM `entradas` LEFT JOIN `tipoentradas` ON tipoentradas.idTipoEntrada=entradas.idTipoEntrada order by fechaEntrada desc;")->fetchAll(PDO::FETCH_ASSOC);
             //Desconectamos la base de datos
             $this->desconectar($entradas);
 
