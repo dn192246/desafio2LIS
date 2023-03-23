@@ -26,7 +26,4 @@ class Conexion
     public static function desconectar($bd){
         $bd = null;
     }
-
 }
-
-?>

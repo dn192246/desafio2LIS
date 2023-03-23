@@ -1,8 +1,6 @@
 <?php
 include_once('conexion.php');
 
-$bd = Conexion::conectar();
-
 if(isset($_POST['email']) and isset($_POST['password']) and isset($_POST['password-verify'])){  
     $email = $_POST['email'];
     $password1 = $_POST['password'];
