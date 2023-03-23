@@ -51,7 +51,7 @@ class Entradas extends Conexion{
         try{
         $sql = "UPDATE entradas SET idUsuario=?, idTipoEntrada=?, montoEntrada=?, fechaEntrada=?, facturaEntrada=? WHERE idEntrada=?";
         $stmt = $this->conectar()->prepare($sql);
-        $stmt->execute([$this->idUsuario, $this->idTipoEntrada, $this->monto, $this->fecha, $this->factura, $idEntrada]);
+        $stmt->execute([$_SESSION['idUsuario'], $this->idTipoEntrada, $this->monto, $this->fecha, $this->factura, $idEntrada]);
         $this->desconectar($stmt);
     }
     catch(Exception $e){
@@ -63,7 +63,7 @@ class Entradas extends Conexion{
         try{
         $sql = "DELETE FROM entradas WHERE idEntrada = ?";
         $stmt = $this->conectar()->prepare($sql);
-        $stmt->execute([$this->idEntrada]);
+        $stmt->execute([$idEntrada]);
         $this->desconectar($stmt);
     }
     catch(Exception $e){
@@ -88,6 +88,7 @@ class Entradas extends Conexion{
     
     public function getEntradas() {
         try {
+            $user = $_SESSION['idUsuario'];
             //Realizamos las consultas de entradas y salidas
             $entradas = $this->conectar()->query("SELECT `idEntrada`,`idUsuario`,entradas.`idTipoEntrada`,`montoEntrada`,`fechaEntrada`,`facturaEntrada`,tipoentradas.nombreTipoEntrada FROM `entradas` LEFT JOIN `tipoentradas` ON tipoentradas.idTipoEntrada=entradas.idTipoEntrada;")->fetchAll(PDO::FETCH_ASSOC);
             //Desconectamos la base de datos

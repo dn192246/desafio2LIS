@@ -1,5 +1,7 @@
 <?php
-include_once('conexion.php');
+require('conexion.php');
+
+$bd = Conexion::conectar();
 
 if (isset($_POST['email']) and isset($_POST['password'])) {
     $email = $_POST['email'];
